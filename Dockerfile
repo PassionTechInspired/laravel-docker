@@ -9,14 +9,13 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    libzip \
     unzip
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # Option 1:
 # Get latest Composer
@@ -33,4 +32,4 @@ WORKDIR /var/www/html
 # Copy existing application directory (Using this command in the project)
 # COPY . .
 
-USER 1001
+# USER 1001
