@@ -26,7 +26,7 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Set working directory
 # Original image already has this WORKDIR
@@ -35,4 +35,4 @@ WORKDIR /var/www/html
 # Copy existing application directory (Using this command in the project)
 # COPY . .
 
-# USER 1001
+USER 1001
