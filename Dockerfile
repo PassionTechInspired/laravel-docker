@@ -35,4 +35,4 @@ WORKDIR /var/www/html
 # Copy existing application directory (Using this command in the project)
 # COPY . .
 
-USER 1001
+# USER 1001
