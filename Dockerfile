@@ -30,7 +30,7 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # Set working directory
 # Original image already has this WORKDIR
-# WORKDIR /var/www/html
+WORKDIR /var/www/html
 
 # Copy existing application directory (Using this command in the project)
 # COPY . .
