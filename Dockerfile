@@ -12,7 +12,7 @@ RUN apk update && apk add --no-cache \
     libzip-dev
 
 # Install PHP extensions
-RUN docker-php-ext-install zip
+RUN docker-php-ext-install gd zip
 
 # Option 1:
 # Get latest Composer
