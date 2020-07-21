@@ -12,7 +12,7 @@ RUN apk update && apk add --no-cache \
     libzip-dev
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-install zip
 
 # Option 1:
 # Get latest Composer
