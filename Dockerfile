@@ -1,4 +1,5 @@
 FROM php:7.4-fpm
+LABEL maintainer "Spy Kab <ooo000spy000ooo@gmail.com>"
 
 # Arguments defined in docker-compose.yml
 # ARG user
