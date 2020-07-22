@@ -1,30 +1,42 @@
-FROM php:7.4-fpm-alpine
-LABEL maintainer "Spy Kab <ooo000spy000ooo@gmail.com>"
+FROM php:7.4-fpm
+
+# Arguments defined in docker-compose.yml
+# ARG user
+# ARG uid
 
 # Install system dependencies
-RUN apk update && apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpng-dev \
+    libonig-dev \
     libxml2-dev \
     zip \
-    unzip \
-    libzip-dev
+    unzip
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install gd zip
-
 # Option 1:
 # Get latest Composer
-# COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Option 2:
 # Install PHP Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Create system user to run Composer and Artisan Commands
+# RUN useradd -G www-data,root -u $uid -d /home/$user $user
+# RUN mkdir -p /home/$user/.composer && \
+#    chown -R $user:$user /home/$user
 
 # Set working directory
-# Original image already has this WORKDIR
 WORKDIR /var/www/html
+
 
 # Copy existing application directory (Using this command in the project)
 # COPY . .
