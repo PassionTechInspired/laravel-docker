@@ -15,13 +15,14 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     libfreetype6-dev \
-    libjpeg62-turbo-dev
+    libjpeg62-turbo-dev \
+    libzip-dev 
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install -j$(nproc) gd pdo_mysql mbstring exif pcntl bcmath
+RUN docker-php-ext-install -j$(nproc) gd pdo_mysql mbstring exif pcntl bcmath zip
 
 # Option 1:
 # Get latest Composer
